@@ -1,0 +1,29 @@
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+
+prometheus:
+  ingress:
+    enabled: true
+    hosts:
+      - prometheus.k8s.sikademo.com # --- PROMETHEUS DOMAIN ---
+    paths:
+      - /
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+    tls:
+    - secretName: prometheus-ingress-tls
+      hosts:
+      - prometheus.k8s.sikademo.com
+
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+      - grafana.k8s.sikademo.com # --- GRAFANA DOMAIN ---
+    paths:
+      - /
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+    tls:
+    - secretName: grafana-ingress-tls
+      hosts:
+      - grafana.k8s.sikademo.com
